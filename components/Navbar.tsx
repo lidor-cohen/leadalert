@@ -1,10 +1,15 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import LoginButton from "@/components/Auth/login-button";
 import SignupButton from "@/components/Auth/signup-button";
+import { createClient } from "@/lib/supabase/server";
+import { LogoutButton } from "@/components/Auth/logout-button";
 
-const Navbar = ({ authNav = false }: { authNav: boolean }) => {
+const Navbar = async ({ authNav = false }: { authNav: boolean }) => {
+  const supabase = await createClient();
+  const { data, error } = await supabase.auth.getClaims();
+  const isLoggedIn: boolean = !(error || !data?.claims);
+
   return (
     <header
       className={`${authNav ? "fixed" : "sticky"} z-50 bg-card top-5 left-0 right-0 max-w-7xl shadow-lg rounded-xl mx-auto px-4 sm:px-6 lg:px-8`}
@@ -28,12 +33,14 @@ const Navbar = ({ authNav = false }: { authNav: boolean }) => {
           </ul>
         </div>
 
-        {!authNav && (
+        {!authNav && !isLoggedIn && (
           <div className="flex space-x-2">
             <SignupButton />
             <LoginButton />
           </div>
         )}
+
+        {isLoggedIn && <LogoutButton />}
       </nav>
     </header>
   );

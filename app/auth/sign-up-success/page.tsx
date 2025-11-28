@@ -13,12 +13,7 @@ export default function Page() {
         <div className="flex flex-col gap-6">
           <Card>
             <CardHeader>
-              <CardTitle className="text-2xl">
-                איזה כיף, ההרשמה בוצעה בהצלחה!
-              </CardTitle>
-              <CardDescription>
-                בדוק/בדקי את המייל שלך על מנת לאמת אותו
-              </CardDescription>
+              <CardTitle className="text-2xl">ההרשמה בוצעה בהצלחה!</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
