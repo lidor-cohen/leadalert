@@ -32,6 +32,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import SidebarLogout from "@/components/Dashboard/components/SidebarLogout";
 import { createClient } from "@/lib/supabase/server";
+import Link from "next/link";
 
 // Menu items.
 const items = [
@@ -62,10 +63,13 @@ export const AppSidebar = async () => {
     <Sidebar variant="inset" collapsible="icon" side="right">
       <SidebarHeader className="group-data-[collapsible=icon]:hidden">
         <SidebarMenu>
-          <div className="flex items-center justify-center gap-2 mt-4">
+          <Link
+            href="/"
+            className="flex items-center justify-center gap-2 mt-4"
+          >
             <span className="font-bold text-primary text-xl">LeadAlert</span>
             <Image src="/logo.svg" alt="logo image" width={24} height={24} />
-          </div>
+          </Link>
           <Separator className="my-4" />
           <SidebarMenuItem>
             <DropdownMenu>

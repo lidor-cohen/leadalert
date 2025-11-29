@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
 import Marquee from "react-fast-marquee";
 import Testimony from "@/components/Landing Page/Testimony";
+import { useTheme } from "next-themes";
 
 type Testimonial = {
   image: string;
@@ -9,6 +12,8 @@ type Testimonial = {
 };
 
 const Testimonials = () => {
+  const { resolvedTheme } = useTheme();
+
   const testimonials: Testimonial[] = [
     {
       image: "/testimonials/lidor.jpg",
@@ -39,7 +44,11 @@ const Testimonials = () => {
           speed={100}
           autoFill
           gradient
-          gradientColor="oklch(0.9821 0 0)"
+          gradientColor={
+            resolvedTheme === "light"
+              ? "oklch(0.9821 0 0)"
+              : "oklch(0.2303 0.0125 264.2926)"
+          }
         >
           {testimonials.map((testimony) => (
             <Testimony
@@ -55,7 +64,11 @@ const Testimonials = () => {
           speed={100}
           autoFill
           gradient
-          gradientColor="oklch(0.9821 0 0)"
+          gradientColor={
+            resolvedTheme === "light"
+              ? "oklch(0.9821 0 0)"
+              : "oklch(0.2303 0.0125 264.2926)"
+          }
           direction="right"
         >
           {testimonials.map((testimony) => (
