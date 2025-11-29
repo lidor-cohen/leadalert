@@ -11,7 +11,7 @@ const Page = async () => {
   }
 
   return (
-    <div className="flex h-svh w-full items-center justify-center gap-2">
+    <div className="flex items-center justify-center gap-2 w-full py-6">
       <p>
         Hello <span>{data.claims.email}</span>
       </p>

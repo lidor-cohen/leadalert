@@ -4,6 +4,8 @@ import LoginButton from "@/components/Auth/login-button";
 import SignupButton from "@/components/Auth/signup-button";
 import { createClient } from "@/lib/supabase/server";
 import { LogoutButton } from "@/components/Auth/logout-button";
+import { redirect } from "next/navigation";
+import EnterDashboardButton from "@/components/Landing Page/EnterDashboardButton";
 
 const Navbar = async ({ authNav = false }: { authNav: boolean }) => {
   const supabase = await createClient();
@@ -16,8 +18,9 @@ const Navbar = async ({ authNav = false }: { authNav: boolean }) => {
     >
       <nav className="flex items-center justify-between h-16 space-x-8">
         <div className="flex items-center justify-between space-x-10">
-          <Link className="text-xl" href="/">
-            <Image src="/logo.svg" alt="logo" width={120} height={32} />
+          <Link className="text-xl flex items-center gap-2 font-bold" href="/">
+            <span className="text-primary">LeadAlert</span>
+            <Image src="/logo.svg" alt="logo" width={28} height={28} />
           </Link>
 
           <ul className="flex gap-12">
@@ -32,15 +35,18 @@ const Navbar = async ({ authNav = false }: { authNav: boolean }) => {
             </li>
           </ul>
         </div>
-
         {!authNav && !isLoggedIn && (
           <div className="flex space-x-2">
             <SignupButton />
             <LoginButton />
           </div>
         )}
-
-        {isLoggedIn && <LogoutButton />}
+        {isLoggedIn && (
+          <div className="flex items-center gap-2">
+            <EnterDashboardButton />
+            <LogoutButton variant="icon" style="outline" />
+          </div>
+        )}
       </nav>
     </header>
   );
